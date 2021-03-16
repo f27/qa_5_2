@@ -39,7 +39,7 @@ public class FormTestsWithFaker {
                 state = "NCR",
                 city = "Noida";
 
-        String[] subjects = {"English", "Maths"}, hobbies = {"Sports", "Music"};
+        String[] subjects = {"English", "Maths", "Arts", "Accounting"}, hobbies = {"Sports", "Music"};
 
 
         $("#firstName").setValue(firstname);

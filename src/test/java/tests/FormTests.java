@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class FormTests {
     @BeforeAll
@@ -26,7 +25,7 @@ public class FormTests {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOptionByValue("2");
         $(".react-datepicker__year-select").selectOptionByValue("2011");
-        $("[aria-label='Choose Monday, March 28th, 2011']").click();
+        $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text("28")).click();
         $("#subjectsInput").setValue("English").pressEnter();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("[for='hobbies-checkbox-1']").click();

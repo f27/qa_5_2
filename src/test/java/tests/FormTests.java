@@ -27,18 +27,14 @@ public class FormTests {
         $(".react-datepicker__month-select").selectOptionByValue("2");
         $(".react-datepicker__year-select").selectOptionByValue("2011");
         $("[aria-label='Choose Monday, March 28th, 2011']").click();
-        $("#subjectsInput").setValue("English");
-        $("#subjectsInput").pressEnter();
-        $("#subjectsInput").setValue("Maths");
-        $("#subjectsInput").pressEnter();
+        $("#subjectsInput").setValue("English").pressEnter();
+        $("#subjectsInput").setValue("Maths").pressEnter();
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-3']").click();
         $("#uploadPicture").uploadFromClasspath("cat.png");
         $("#currentAddress").setValue("Moscow, Neverland");
-        $("#react-select-3-input").setValue("NCR");
-        $("#react-select-3-input").pressEnter();
-        $("#react-select-4-input").setValue("Noida");
-        $("#react-select-4-input").pressEnter();
+        $("#react-select-3-input").setValue("NCR").pressEnter();
+        $("#react-select-4-input").setValue("Noida").pressEnter();
         $("#submit").click();
 
         $(".modal-content").shouldHave(text("Alex"),

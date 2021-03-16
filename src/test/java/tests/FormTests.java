@@ -20,7 +20,7 @@ public class FormTests {
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Testoff");
         $("#userEmail").setValue("someemail@qaqaqaqa.qa");
-        $("[for='gender-radio-1']").click();
+        $$("#genterWrapper label").findBy(text("Male")).click();
         $("#userNumber").setValue("0123456789");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOptionByValue("2");
@@ -28,8 +28,8 @@ public class FormTests {
         $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text("28")).click();
         $("#subjectsInput").setValue("English").pressEnter();
         $("#subjectsInput").setValue("Maths").pressEnter();
-        $("[for='hobbies-checkbox-1']").click();
-        $("[for='hobbies-checkbox-3']").click();
+        $$("#hobbiesWrapper label").findBy(text("Sports")).click();
+        $$("#hobbiesWrapper label").findBy(text("Music")).click();
         $("#uploadPicture").uploadFromClasspath("cat.png");
         $("#currentAddress").setValue("Moscow, Neverland");
         $("#react-select-3-input").setValue("NCR").pressEnter();

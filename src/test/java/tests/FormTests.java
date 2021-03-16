@@ -23,7 +23,7 @@ public class FormTests {
         $$("#genterWrapper label").findBy(text("Male")).click();
         $("#userNumber").setValue("0123456789");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOptionByValue("2");
+        $(".react-datepicker__month-select").selectOption("March");
         $(".react-datepicker__year-select").selectOptionByValue("2011");
         $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text("28")).click();
         $("#subjectsInput").setValue("English").pressEnter();

@@ -8,13 +8,15 @@ repositories {
 
 def selenideVersion = "5.19.0",
     junitVersion = "5.7.1",
-    slf4jVersion = "1.7.29"
+    slf4jVersion = "1.7.29",
+    javafakerVersion = "1.0.2"
 
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion",)
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "com.github.javafaker:javafaker:$javafakerVersion")
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
 

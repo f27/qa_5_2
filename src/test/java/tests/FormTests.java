@@ -35,8 +35,7 @@ public class FormTests {
         $("#subjectsInput").pressEnter();
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-3']").click();
-        File picture = new File("src/test/resources/cat.png");
-        $("#uploadPicture").uploadFile(picture);
+        $("#uploadPicture").uploadFromClasspath("cat.png");
         $("#currentAddress").setValue("Moscow, Neverland");
         $("#react-select-3-input").setValue("NCR");
         $("#react-select-3-input").pressEnter();

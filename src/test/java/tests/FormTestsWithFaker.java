@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.ZoneId;
 import java.time.format.TextStyle;
+import java.util.Date;
 import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
@@ -23,14 +24,16 @@ public class FormTestsWithFaker {
         open("https://demoqa.com/automation-practice-form");
 
         Faker faker = new Faker();
+        Date dateofbirth = faker.date().birthday();
+
         String firstname = faker.name().firstName(),
                 lastname = faker.name().lastName(),
                 email = faker.internet().emailAddress(),
                 gender = faker.demographic().sex(),
                 mobile = faker.phoneNumber().subscriberNumber(10),
-                monthofbirth = faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
-                yearofbirth = String.valueOf(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).getYear()),
-                dayofbirth = String.valueOf(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
+                monthofbirth = dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
+                yearofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
+                dayofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
                 subject1 = "English",
                 subject2 = "Maths",
                 hobby1 = "Sports",
@@ -39,6 +42,7 @@ public class FormTestsWithFaker {
                 address = faker.address().fullAddress(),
                 state = "NCR",
                 city = "Noida";
+
 
         $("#firstName").setValue(firstname);
         $("#lastName").setValue(lastname);

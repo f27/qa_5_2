@@ -34,14 +34,12 @@ public class FormTestsWithFaker {
                 monthofbirth = dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
                 yearofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
                 dayofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
-                subject1 = "English",
-                subject2 = "Maths",
-                hobby1 = "Sports",
-                hobby2 = "Music",
                 picture = "cat.png",
                 address = faker.address().fullAddress(),
                 state = "NCR",
                 city = "Noida";
+
+        String[] subjects = {"English", "Maths"}, hobbies = {"Sports", "Music"};
 
 
         $("#firstName").setValue(firstname);
@@ -53,10 +51,12 @@ public class FormTestsWithFaker {
         $(".react-datepicker__month-select").selectOption(monthofbirth);
         $(".react-datepicker__year-select").selectOption(yearofbirth);
         $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text(dayofbirth)).click();
-        $("#subjectsInput").setValue(subject1).pressEnter();
-        $("#subjectsInput").setValue(subject2).pressEnter();
-        $$("#hobbiesWrapper label").findBy(text(hobby1)).click();
-        $$("#hobbiesWrapper label").findBy(text(hobby2)).click();
+        for(String subject:subjects) {
+            $("#subjectsInput").setValue(subject).pressEnter();
+        }
+        for (String hobby:hobbies) {
+            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
+        }
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);
         $("#react-select-3-input").setValue(state).pressEnter();
@@ -69,8 +69,8 @@ public class FormTestsWithFaker {
                 text(gender),
                 text(mobile),
                 text(dayofbirth + " " + monthofbirth + "," + yearofbirth),
-                text(subject1 + ", " + subject2),
-                text(hobby1 + ", " + hobby2),
+                text(String.join(", ", subjects)),
+                text(String.join(", ", hobbies)),
                 text(picture),
                 text(address),
                 text(state),

@@ -20,7 +20,7 @@ public class FormTestsWithFaker {
     }
 
     @Test
-    void formFillTest() {
+    void formFillTestWithFaker() {
         open("https://demoqa.com/automation-practice-form");
 
         Faker faker = new Faker();

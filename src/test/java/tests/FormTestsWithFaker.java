@@ -60,7 +60,7 @@ public class FormTestsWithFaker {
             $("#react-select-2-option-0").click();
         }
         for (String hobby:hobbies) {
-            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
+            executeJavaScript("arguments[0].click();", $$("#hobbiesWrapper label").findBy(text(hobby)));
         }
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);

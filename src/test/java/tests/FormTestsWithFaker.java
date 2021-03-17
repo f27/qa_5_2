@@ -50,7 +50,7 @@ public class FormTestsWithFaker {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthofbirth);
         $(".react-datepicker__year-select").selectOption(yearofbirth);
-        $$(".react-datepicker__day:not(.react-datepicker__day--outside-month)").findBy(text(dayofbirth)).click();
+        $(".react-datepicker__day.react-datepicker__day--0" + dayofbirth + ":not(.react-datepicker__day--outside-month)").click();
         for(String subject:subjects) {
             $("#subjectsInput").setValue(subject).pressEnter();
         }

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FormTestsWithFaker {
@@ -55,15 +56,18 @@ public class FormTestsWithFaker {
         $(".react-datepicker__year-select").selectOption(yearofbirth);
         $(".react-datepicker__day.react-datepicker__day--0" + dayofbirth + ":not(.react-datepicker__day--outside-month)").click();
         for(String subject:subjects) {
-            $("#subjectsInput").setValue(subject).pressEnter();
+            $("#subjectsInput").setValue(subject);
+            $("#react-select-2-option-0").click();
         }
         for (String hobby:hobbies) {
             $$("#hobbiesWrapper label").findBy(text(hobby)).click();
         }
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);
-        $("#react-select-3-input").setValue(state).pressEnter();
-        $("#react-select-4-input").setValue(city).pressEnter();
+        $("#state").click();
+        $(byText(state)).click();
+        $("#city").click();
+        $(byText(city)).click();
         $("#submit").click();
 
         $(".modal-content").shouldHave(text(firstname),

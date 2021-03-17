@@ -68,9 +68,9 @@ public class FormTestsWithFaker {
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);
         $("#state").click();
-        $("#state").find((byText(state))).click();
+        $("#state").find(byText(state)).click();
         $("#city").click();
-        $("#city").find((byText(city))).click();
+        $("#city").find(byText(city)).click();
         $("#submit").click();
 
         $(".modal-content").shouldHave(text(firstname),

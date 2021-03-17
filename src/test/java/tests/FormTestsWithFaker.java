@@ -18,6 +18,7 @@ public class FormTestsWithFaker {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
+        //Configuration.headless = true;
     }
 
     @Test
@@ -60,7 +61,9 @@ public class FormTestsWithFaker {
             $("#react-select-2-option-0").click();
         }
         for (String hobby:hobbies) {
-            executeJavaScript("arguments[0].click();", $$("#hobbiesWrapper label").findBy(text(hobby)));
+            Configuration.clickViaJs = true;
+            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
+            Configuration.clickViaJs = false;
         }
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);

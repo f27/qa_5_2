@@ -40,7 +40,7 @@ public class FormTestsWithFaker {
                 address = faker.address().fullAddress(),
                 state = "NCR",
                 city = "Noida";
-        if (dayofbirth.length()<2){
+        if (dayofbirth.length() < 2) {
             dayofbirth = "0" + dayofbirth;
         }
 
@@ -56,13 +56,13 @@ public class FormTestsWithFaker {
         $(".react-datepicker__month-select").selectOption(monthofbirth);
         $(".react-datepicker__year-select").selectOption(yearofbirth);
         $(".react-datepicker__day--0" + dayofbirth + ":not(.react-datepicker__day--outside-month)").click();
-        for(String subject:subjects) {
+        for (String subject : subjects) {
             $("#subjectsInput").setValue(subject);
             $("#react-select-2-option-0").click();
         }
         Configuration.clickViaJs = true;
-        for (String hobby:hobbies) {
-                        $$("#hobbiesWrapper label").findBy(text(hobby)).click();
+        for (String hobby : hobbies) {
+            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
         }
         Configuration.clickViaJs = false;
         $("#uploadPicture").uploadFromClasspath(picture);

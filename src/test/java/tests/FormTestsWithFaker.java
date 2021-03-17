@@ -60,11 +60,11 @@ public class FormTestsWithFaker {
             $("#subjectsInput").setValue(subject);
             $("#react-select-2-option-0").click();
         }
+        Configuration.clickViaJs = true;
         for (String hobby:hobbies) {
-            Configuration.clickViaJs = true;
-            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
-            Configuration.clickViaJs = false;
+                        $$("#hobbiesWrapper label").findBy(text(hobby)).click();
         }
+        Configuration.clickViaJs = false;
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);
         $("#state").click();

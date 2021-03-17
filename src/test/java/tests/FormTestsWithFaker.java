@@ -38,6 +38,9 @@ public class FormTestsWithFaker {
                 address = faker.address().fullAddress(),
                 state = "NCR",
                 city = "Noida";
+        if (dayofbirth.length()<2){
+            dayofbirth = "0" + dayofbirth;
+        }
 
         String[] subjects = {"English", "Maths", "Arts", "Accounting"}, hobbies = {"Sports", "Music"};
 

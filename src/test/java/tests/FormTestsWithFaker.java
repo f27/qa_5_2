@@ -10,6 +10,7 @@ import java.time.format.TextStyle;
 import java.util.*;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -22,8 +23,6 @@ public class FormTestsWithFaker {
 
     @Test
     void formFillTestWithFaker() {
-        open("https://demoqa.com/automation-practice-form");
-
         Faker faker = new Faker();
         Date dateOfBirth = faker.date().birthday();
         Map<String, String[]> statesAndCities = new HashMap<>();
@@ -53,6 +52,9 @@ public class FormTestsWithFaker {
 
         String[] subjects = {"English", "Maths", "Arts", "Accounting"}, hobbies = {"Sports", "Music"};
 
+        open("https://demoqa.com/automation-practice-form");
+
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
         $("#firstName").setValue(firstname);
         $("#lastName").setValue(lastname);
@@ -80,6 +82,8 @@ public class FormTestsWithFaker {
         $("#city").find(byText(city)).click();
         $("#submit").click();
 
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstname + " " + lastname));
         $x("//td[text()='Student Email']").parent().shouldHave(text(email));
         $x("//td[text()='Gender']").parent().shouldHave(text(gender));
@@ -93,6 +97,6 @@ public class FormTestsWithFaker {
 
         $("#closeLargeModal").click();
 
-
+        $(".modal-content").shouldNotBe(visible);
     }
 }

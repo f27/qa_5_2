@@ -26,22 +26,22 @@ public class FormTestsWithFaker {
         open("https://demoqa.com/automation-practice-form");
 
         Faker faker = new Faker();
-        Date dateofbirth = faker.date().birthday();
+        Date dateOfBirth = faker.date().birthday();
 
         String firstname = faker.name().firstName(),
                 lastname = faker.name().lastName(),
                 email = faker.internet().emailAddress(),
                 gender = faker.demographic().sex(),
                 mobile = faker.phoneNumber().subscriberNumber(10),
-                monthofbirth = dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
-                yearofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
-                dayofbirth = String.valueOf(dateofbirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
+                monthOfBirth = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
+                yearOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
+                dayOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
                 picture = "cat.png",
                 address = faker.address().fullAddress(),
                 state = "NCR",
                 city = "Noida";
-        if (dayofbirth.length() < 2) {
-            dayofbirth = "0" + dayofbirth;
+        if (dayOfBirth.length() < 2) {
+            dayOfBirth = "0" + dayOfBirth;
         }
 
         String[] subjects = {"English", "Maths", "Arts", "Accounting"}, hobbies = {"Sports", "Music"};
@@ -53,14 +53,14 @@ public class FormTestsWithFaker {
         $$("#genterWrapper label").findBy(text(gender)).click();
         $("#userNumber").setValue(mobile);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(monthofbirth);
-        $(".react-datepicker__year-select").selectOption(yearofbirth);
-        $(".react-datepicker__day--0" + dayofbirth + ":not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__month-select").selectOption(monthOfBirth);
+        $(".react-datepicker__year-select").selectOption(yearOfBirth);
+        $(".react-datepicker__day--0" + dayOfBirth + ":not(.react-datepicker__day--outside-month)").click();
         for (String subject : subjects) {
             $("#subjectsInput").setValue(subject);
             $("#react-select-2-option-0").click();
         }
-        Configuration.clickViaJs = true;
+        Configuration.clickViaJs = true; //Click via javascript for headless
         for (String hobby : hobbies) {
             $$("#hobbiesWrapper label").findBy(text(hobby)).click();
         }
@@ -73,6 +73,7 @@ public class FormTestsWithFaker {
         $("#city").find(byText(city)).click();
         $("#submit").click();
 
+        /*
         $(".modal-content").shouldHave(text(firstname),
                 text(lastname),
                 text(email),
@@ -85,7 +86,20 @@ public class FormTestsWithFaker {
                 text(address),
                 text(state),
                 text(city));
+        */
 
+        $$("td").findBy(text("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
+        $$("td").findBy(text("Student Email")).parent().shouldHave(text(email));
+        $$("td").findBy(text("Gender")).parent().shouldHave(text(gender));
+        $$("td").findBy(text("Mobile")).parent().shouldHave(text(mobile));
+        $$("td").findBy(text("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        $$("td").findBy(text("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
+        $$("td").findBy(text("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
+        $$("td").findBy(text("Picture")).parent().shouldHave(text(picture));
+        $$("td").findBy(text("Address")).parent().shouldHave(text(address));
+        $$("td").findBy(text("State and City")).parent().shouldHave(text(state + " " + city));
+
+        $("#closeLargeModal").click();
 
     }
 }

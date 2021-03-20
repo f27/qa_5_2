@@ -17,7 +17,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class FormTestsWithFaker {
     @BeforeAll
     static void setup() {
-        Configuration.startMaximized = true;
+        //Configuration.startMaximized = true;
+        Configuration.browserSize = "800x200";
     }
 
     @Test
@@ -60,28 +61,28 @@ public class FormTestsWithFaker {
         $("#firstName").setValue(firstname);
         $("#lastName").setValue(lastname);
         $("#userEmail").setValue(email);
-        $("#genterWrapper").$(byText(gender)).click();
+        $("#genterWrapper").$(byText(gender)).scrollIntoView(true).click();
         $("#userNumber").setValue(mobile);
-        $("#dateOfBirthInput").click();
+        $("#dateOfBirthInput").scrollIntoView(true).click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", dayOfBirth)).click();
+        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", dayOfBirth)).scrollIntoView(true).click();
         for (String subject : subjects) {
             $("#subjectsInput").setValue(subject);
-            $("#react-select-2-option-0").click();
+            $("#react-select-2-option-0").scrollIntoView(true).click();
         }
         Configuration.clickViaJs = true; //Click via javascript for headless
         for (String hobby : hobbies) {
-            $("#hobbiesWrapper").$(byText(hobby)).click();
+            $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
         }
         Configuration.clickViaJs = false;
         $("#uploadPicture").uploadFromClasspath(picture);
         $("#currentAddress").setValue(address);
-        $("#state").click();
-        $("#state").find(byText(state)).click();
-        $("#city").click();
-        $("#city").find(byText(city)).click();
-        $("#submit").click();
+        $("#state").scrollIntoView(true).click();
+        $("#state").find(byText(state)).scrollIntoView(true).click();
+        $("#city").scrollIntoView(true).click();
+        $("#city").find(byText(city)).scrollIntoView(true).click();
+        $("#submit").scrollIntoView(true).click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text(modalLabel));
 
@@ -96,7 +97,7 @@ public class FormTestsWithFaker {
         $x("//td[text()='Address']").parent().shouldHave(text(address));
         $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
 
-        $("#closeLargeModal").click();
+        $("#closeLargeModal").scrollIntoView(true).click();
 
         $(".modal-content").shouldNotBe(visible);
     }

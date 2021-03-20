@@ -88,6 +88,7 @@ public class FormTestsWithFaker {
                 text(city));
         */
 
+        /* Кажется, что проверяет дольше
         $$("td").findBy(text("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
         $$("td").findBy(text("Student Email")).parent().shouldHave(text(email));
         $$("td").findBy(text("Gender")).parent().shouldHave(text(gender));
@@ -98,6 +99,18 @@ public class FormTestsWithFaker {
         $$("td").findBy(text("Picture")).parent().shouldHave(text(picture));
         $$("td").findBy(text("Address")).parent().shouldHave(text(address));
         $$("td").findBy(text("State and City")).parent().shouldHave(text(state + " " + city));
+         */
+
+        $(".modal-content").$(byText("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
+        $(".modal-content").$(byText("Student Email")).parent().shouldHave(text(email));
+        $(".modal-content").$(byText("Gender")).parent().shouldHave(text(gender));
+        $(".modal-content").$(byText("Mobile")).parent().shouldHave(text(mobile));
+        $(".modal-content").$(byText("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        $(".modal-content").$(byText("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
+        $(".modal-content").$(byText("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
+        $(".modal-content").$(byText("Picture")).parent().shouldHave(text(picture));
+        $(".modal-content").$(byText("Address")).parent().shouldHave(text(address));
+        $(".modal-content").$(byText("State and City")).parent().shouldHave(text(state + " " + city));
 
         $("#closeLargeModal").click();
 

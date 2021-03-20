@@ -36,7 +36,7 @@ public class FormTestsWithFaker {
                 lastname = faker.name().lastName(),
                 email = faker.internet().emailAddress(firstname.toLowerCase() + "." + lastname.toLowerCase()),
                 gender = faker.demographic().sex(),
-                mobile = faker.numerify("##########"),
+                mobile = faker.numerify("##########"), //10 Digits
                 monthOfBirth = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
                 yearOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
                 dayOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),

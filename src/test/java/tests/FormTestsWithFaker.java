@@ -17,8 +17,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class FormTestsWithFaker {
     @BeforeAll
     static void setup() {
-        //Configuration.startMaximized = true;
-        Configuration.browserSize = "800x200";
+        Configuration.startMaximized = true;
     }
 
     @Test

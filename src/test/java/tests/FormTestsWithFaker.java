@@ -57,7 +57,7 @@ public class FormTestsWithFaker {
         $("#firstName").setValue(firstname);
         $("#lastName").setValue(lastname);
         $("#userEmail").setValue(email);
-        $$("#genterWrapper label").findBy(text(gender)).click();
+        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(mobile);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
@@ -69,7 +69,7 @@ public class FormTestsWithFaker {
         }
         Configuration.clickViaJs = true; //Click via javascript for headless
         for (String hobby : hobbies) {
-            $$("#hobbiesWrapper label").findBy(text(hobby)).click();
+            $("#hobbiesWrapper").$(byText(hobby)).click();
         }
         Configuration.clickViaJs = false;
         $("#uploadPicture").uploadFromClasspath(picture);

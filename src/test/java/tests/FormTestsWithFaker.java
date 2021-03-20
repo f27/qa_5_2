@@ -18,7 +18,6 @@ public class FormTestsWithFaker {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
-        //Configuration.headless = true;
     }
 
     @Test

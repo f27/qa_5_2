@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -88,31 +89,37 @@ public class FormTestsWithFaker {
                 text(city));
         */
 
-        /* Кажется, что проверяет дольше
-        $$("td").findBy(text("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
-        $$("td").findBy(text("Student Email")).parent().shouldHave(text(email));
-        $$("td").findBy(text("Gender")).parent().shouldHave(text(gender));
-        $$("td").findBy(text("Mobile")).parent().shouldHave(text(mobile));
-        $$("td").findBy(text("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
-        $$("td").findBy(text("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
-        $$("td").findBy(text("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
-        $$("td").findBy(text("Picture")).parent().shouldHave(text(picture));
-        $$("td").findBy(text("Address")).parent().shouldHave(text(address));
-        $$("td").findBy(text("State and City")).parent().shouldHave(text(state + " " + city));
+        /*
+        ElementsCollection td = $$("td");
+
+        td.findBy(text("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
+        td.findBy(text("Student Email")).parent().shouldHave(text(email));
+        td.findBy(text("Gender")).parent().shouldHave(text(gender));
+        td.findBy(text("Mobile")).parent().shouldHave(text(mobile));
+        td.findBy(text("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        td.findBy(text("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
+        td.findBy(text("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
+        td.findBy(text("Picture")).parent().shouldHave(text(picture));
+        td.findBy(text("Address")).parent().shouldHave(text(address));
+        td.findBy(text("State and City")).parent().shouldHave(text(state + " " + city));
+
          */
 
-        $(".modal-content").$(byText("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
-        $(".modal-content").$(byText("Student Email")).parent().shouldHave(text(email));
-        $(".modal-content").$(byText("Gender")).parent().shouldHave(text(gender));
-        $(".modal-content").$(byText("Mobile")).parent().shouldHave(text(mobile));
-        $(".modal-content").$(byText("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
-        $(".modal-content").$(byText("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
-        $(".modal-content").$(byText("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
-        $(".modal-content").$(byText("Picture")).parent().shouldHave(text(picture));
-        $(".modal-content").$(byText("Address")).parent().shouldHave(text(address));
-        $(".modal-content").$(byText("State and City")).parent().shouldHave(text(state + " " + city));
+        SelenideElement submitResult = $(".modal-content");
+
+        submitResult.$(byText("Student Name")).parent().shouldHave(text(firstname + " " + lastname));
+        submitResult.$(byText("Student Email")).parent().shouldHave(text(email));
+        submitResult.$(byText("Gender")).parent().shouldHave(text(gender));
+        submitResult.$(byText("Mobile")).parent().shouldHave(text(mobile));
+        submitResult.$(byText("Date of Birth")).parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        submitResult.$(byText("Subjects")).parent().shouldHave(text(String.join(", ", subjects)));
+        submitResult.$(byText("Hobbies")).parent().shouldHave(text(String.join(", ", hobbies)));
+        submitResult.$(byText("Picture")).parent().shouldHave(text(picture));
+        submitResult.$(byText("Address")).parent().shouldHave(text(address));
+        submitResult.$(byText("State and City")).parent().shouldHave(text(state + " " + city));
 
         $("#closeLargeModal").click();
+
 
     }
 }

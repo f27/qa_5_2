@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.ZoneId;
 import java.time.format.TextStyle;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -27,19 +26,27 @@ public class FormTestsWithFaker {
 
         Faker faker = new Faker();
         Date dateOfBirth = faker.date().birthday();
+        Map<String, String[]> statesAndCities = new HashMap<>();
+        statesAndCities.put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});
+        statesAndCities.put("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"});
+        statesAndCities.put("Haryana", new String[]{"Karnal", "Panipat"});
+        statesAndCities.put("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
+
+        List<String> statesList = new ArrayList<>(statesAndCities.keySet());
 
         String firstname = faker.name().firstName(),
                 lastname = faker.name().lastName(),
-                email = faker.internet().emailAddress(),
+                email = faker.internet().emailAddress(firstname.toLowerCase() + "." + lastname.toLowerCase()),
                 gender = faker.demographic().sex(),
-                mobile = faker.phoneNumber().subscriberNumber(10),
+                mobile = faker.numerify("##########"),
                 monthOfBirth = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH),
                 yearOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getYear()),
                 dayOfBirth = String.valueOf(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).getDayOfMonth()),
                 picture = "cat.png",
                 address = faker.address().fullAddress(),
-                state = "NCR",
-                city = "Noida";
+                state = statesList.get(faker.random().nextInt(statesList.size())),
+                city = statesAndCities.get(state)[faker.random().nextInt(statesAndCities.get(state).length)];
+
         if (dayOfBirth.length() < 2) {
             dayOfBirth = "0" + dayOfBirth;
         }
@@ -72,21 +79,6 @@ public class FormTestsWithFaker {
         $("#city").click();
         $("#city").find(byText(city)).click();
         $("#submit").click();
-
-        /*
-        $(".modal-content").shouldHave(text(firstname),
-                text(lastname),
-                text(email),
-                text(gender),
-                text(mobile),
-                text(dayofbirth + " " + monthofbirth + "," + yearofbirth),
-                text(String.join(", ", subjects)),
-                text(String.join(", ", hobbies)),
-                text(picture),
-                text(address),
-                text(state),
-                text(city));
-        */
 
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstname + " " + lastname));
         $x("//td[text()='Student Email']").parent().shouldHave(text(email));

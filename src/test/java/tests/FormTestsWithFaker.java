@@ -43,7 +43,9 @@ public class FormTestsWithFaker {
                 picture = "cat.png",
                 address = faker.address().fullAddress(),
                 state = statesList.get(faker.random().nextInt(statesList.size())),
-                city = statesAndCities.get(state)[faker.random().nextInt(statesAndCities.get(state).length)];
+                city = statesAndCities.get(state)[faker.random().nextInt(statesAndCities.get(state).length)],
+                formLabel = "Student Registration Form",
+                modalLabel = "Thanks for submitting the form";
 
         if (dayOfBirth.length() < 2) {
             dayOfBirth = "0" + dayOfBirth;
@@ -53,7 +55,7 @@ public class FormTestsWithFaker {
 
         open("https://demoqa.com/automation-practice-form");
 
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        $(".practice-form-wrapper").shouldHave(text(formLabel));
 
         $("#firstName").setValue(firstname);
         $("#lastName").setValue(lastname);
@@ -81,7 +83,7 @@ public class FormTestsWithFaker {
         $("#city").find(byText(city)).click();
         $("#submit").click();
 
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $("#example-modal-sizes-title-lg").shouldHave(text(modalLabel));
 
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstname + " " + lastname));
         $x("//td[text()='Student Email']").parent().shouldHave(text(email));

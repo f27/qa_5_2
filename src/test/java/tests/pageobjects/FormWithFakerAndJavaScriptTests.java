@@ -23,6 +23,8 @@ public class FormWithFakerAndJavaScriptTests {
     static Faker faker = new Faker();
     static Date dateOfBirth = faker.date().birthday();
 
+    static Map<String, String> actualData;
+
     static Map<String, String[]> statesAndCities = new HashMap<String, String[]>() {{
         put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});
         put("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"});
@@ -72,13 +74,12 @@ public class FormWithFakerAndJavaScriptTests {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
-        FormWithFakerAndJavaScriptPage.openForm();
         FormWithFakerAndJavaScriptPage.fillForm(userData);
     }
 
     @AfterAll
     static void closeModal() {
-        FormWithFakerAndJavaScriptPage.checkCloseButton();
+        FormWithFakerAndJavaScriptPage.closeModal();
     }
 
     @ParameterizedTest
@@ -89,8 +90,7 @@ public class FormWithFakerAndJavaScriptTests {
 
     public static Stream<Arguments> getTableDataAsStream() {
         String js = readStringFromFile("./src/test/resources/js/get_table_data.js");
-        Map<String, String> actualData = mapFromJson(executeJavaScript(js));
-        return createList(actualData).stream();
+        return createList(mapFromJson(executeJavaScript(js))).stream();
     }
 
     private static List<Arguments> createList(Map<String, String> data) {

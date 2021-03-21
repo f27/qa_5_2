@@ -11,16 +11,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class FormWithFakerAndJavaScriptPage {
-    public static void openForm() {
-        open("https://demoqa.com/automation-practice-form");
-    }
-
-    public static void checkCloseButton() {
-        $("#closeLargeModal").scrollIntoView(true).click();
-        $(".modal-content").shouldNotBe(visible);
-    }
 
     public static void fillForm(Map<String, String> userData) {
+        open("https://demoqa.com/automation-practice-form");
+
         $(".practice-form-wrapper").shouldHave(text(userData.get("Form Title")));
         $("#firstName").setValue(userData.get("First Name"));
         $("#lastName").setValue(userData.get("Last Name"));
@@ -47,7 +41,10 @@ public class FormWithFakerAndJavaScriptPage {
         $("#city").scrollIntoView(true).click();
         $("#city").find(byText(userData.get("City"))).scrollIntoView(true).click();
         $("#submit").scrollIntoView(true).click();
+    }
 
-        $("#example-modal-sizes-title-lg").shouldHave(text(userData.get("Thanks Title")));
+    public static void closeModal() {
+        $("#closeLargeModal").scrollIntoView(true).click();
+        $(".modal-content").shouldNotBe(visible);
     }
 }

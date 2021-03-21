@@ -21,9 +21,8 @@ import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptTests {
     static Faker faker = new Faker();
-    static Date dateOfBirth = faker.date().birthday();
 
-    static Map<String, String> actualData;
+    static Date dateOfBirth = faker.date().birthday();
 
     static Map<String, String[]> statesAndCities = new HashMap<String, String[]>() {{
         put("NCR", new String[]{"Delhi", "Gurgaon", "Noida"});

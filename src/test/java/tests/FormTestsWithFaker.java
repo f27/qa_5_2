@@ -16,9 +16,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class FormTestsWithFaker {
     Faker faker = new Faker();
     Date dateOfBirth = faker.date().birthday();
-    SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy"),
-            monthFormat = new SimpleDateFormat("MMMM", Locale.ENGLISH),
-            dayFormat = new SimpleDateFormat("dd");
 
     static HashMap<String, String[]> statesAndCities = new HashMap<>();
 
@@ -36,9 +33,9 @@ public class FormTestsWithFaker {
             email = faker.internet().emailAddress(firstname.toLowerCase() + "." + lastname.toLowerCase()),
             gender = faker.demographic().sex(),
             mobile = faker.numerify("##########"), //10 Digits
-            monthOfBirth = monthFormat.format(dateOfBirth),
-            yearOfBirth = yearFormat.format(dateOfBirth),
-            dayOfBirth = dayFormat.format(dateOfBirth),
+            monthOfBirth = new SimpleDateFormat("MMMM", Locale.ENGLISH).format(dateOfBirth),
+            yearOfBirth = new SimpleDateFormat("yyyy").format(dateOfBirth),
+            dayOfBirth = new SimpleDateFormat("dd").format(dateOfBirth),
             picture = "cat.png",
             address = faker.address().fullAddress(),
             state = statesList.get(faker.random().nextInt(statesList.size())),

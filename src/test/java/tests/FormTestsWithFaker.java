@@ -33,8 +33,8 @@ public class FormTestsWithFaker {
             email = faker.internet().emailAddress(firstname.toLowerCase() + "." + lastname.toLowerCase()),
             gender = faker.demographic().sex(),
             mobile = faker.numerify("##########"), //10 Digits
-            monthOfBirth = new SimpleDateFormat("MMMM", Locale.ENGLISH).format(dateOfBirth),
             yearOfBirth = new SimpleDateFormat("yyyy").format(dateOfBirth),
+            monthOfBirth = new SimpleDateFormat("MMMM", Locale.ENGLISH).format(dateOfBirth),
             dayOfBirth = new SimpleDateFormat("dd").format(dateOfBirth),
             picture = "cat.png",
             address = faker.address().fullAddress(),

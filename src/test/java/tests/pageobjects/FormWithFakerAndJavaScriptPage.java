@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FormWithFakerAndJavaScriptPage {
 
-    public static void fillForm(Map<String, String> userData) {
+    public void fillForm(Map<String, String> userData) {
         $(".practice-form-wrapper").shouldHave(text(userData.get("Form Title")));
         $("#firstName").setValue(userData.get("First Name"));
         $("#lastName").setValue(userData.get("Last Name"));
@@ -52,7 +52,7 @@ public class FormWithFakerAndJavaScriptPage {
         $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
     }
 
-    public static void closeModal() {
+    public void closeModal() {
         $("#closeLargeModal").scrollIntoView(true).click();
         $(".modal-content").shouldNotBe(visible);
     }

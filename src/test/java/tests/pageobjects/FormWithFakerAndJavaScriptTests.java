@@ -76,12 +76,12 @@ public class FormWithFakerAndJavaScriptTests {
     static void setup() {
         Configuration.startMaximized = true;
         formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
-        FormWithFakerAndJavaScriptPage.fillForm(userData);
+        formWithFakerAndJavaScriptPage.fillForm(userData);
     }
 
     @AfterAll
     static void closeModal() {
-        FormWithFakerAndJavaScriptPage.closeModal();
+        formWithFakerAndJavaScriptPage.closeModal();
     }
 
     @ParameterizedTest

@@ -8,13 +8,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class FormWithFakerAndJavaScriptPage {
 
     public static void fillForm(Map<String, String> userData) {
-        open("https://demoqa.com/automation-practice-form");
-
         $(".practice-form-wrapper").shouldHave(text(userData.get("Form Title")));
         $("#firstName").setValue(userData.get("First Name"));
         $("#lastName").setValue(userData.get("Last Name"));

@@ -71,8 +71,8 @@ public class FormWithFakerAndJavaScriptTests {
     void formWithFakerAndJavaScriptTests() {
         formWithFakerAndJavaScriptPage =
                 open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class)
-                .fillForm(userData)
-                .checkData(expectedData)
-                .closeModal();
+                        .fillForm(userData)
+                        .checkData(expectedData)
+                        .closeModal();
     }
 }

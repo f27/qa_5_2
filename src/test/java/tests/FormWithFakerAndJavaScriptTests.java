@@ -84,7 +84,7 @@ public class FormWithFakerAndJavaScriptTests {
     }
 
     public static Stream<Arguments> getTableDataAsStream() {
-        String js = readStringFromFile("./src/test/resources/js/get_table_data.js");
+        String js = readStringFromFile("./src/test/resources/js/get_table_data_no_jquery.js");
         Map<String, String> actualData = mapFromJson(executeJavaScript(js));
         return createList(actualData).stream();
     }

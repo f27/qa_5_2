@@ -31,6 +31,7 @@ public class FormWithFakerAndJavaScriptPage {
             submit = $("#submit"),
             modal = $(".modal-content"),
             closeModal = $("#closeLargeModal");
+    private static final String classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)";
 
 
     public void fillForm(Map<String, String> userData) {
@@ -62,7 +63,7 @@ public class FormWithFakerAndJavaScriptPage {
     private static void fillDatePicker(String year, String month, String day) {
         monthField.selectOption(month);
         yearField.selectOption(year);
-        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", day)).scrollIntoView(true).click();//todo: put in vars
+        $(String.format(classOfDay, day)).scrollIntoView(true).click();
     }
 
     private static void addSubject(String subject) {

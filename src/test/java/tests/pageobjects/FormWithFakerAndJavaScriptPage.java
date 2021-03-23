@@ -62,7 +62,7 @@ public class FormWithFakerAndJavaScriptPage {
     private static void fillDatePicker(String year, String month, String day) {
         monthField.selectOption(month);
         yearField.selectOption(year);
-        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", day)).scrollIntoView(true).click();
+        $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", day)).scrollIntoView(true).click();//todo: put in vars
     }
 
     private static void addSubject(String subject) {

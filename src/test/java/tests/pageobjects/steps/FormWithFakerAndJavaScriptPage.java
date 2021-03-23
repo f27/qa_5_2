@@ -1,6 +1,7 @@
 package tests.pageobjects.steps;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 
 import java.util.Map;
 
@@ -15,33 +16,53 @@ import static utils.FileUtils.readStringFromFile;
 import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptPage {
+    private static final SelenideElement
+            formTitleField = $(".practice-form-wrapper"),
+            firstNameField = $("#firstName"),
+            lastNameField = $("#lastName"),
+            emailField = $("#userEmail"),
+            genderField = $("#genterWrapper"),
+            mobileField = $("#userNumber"),
+            datePickerField = $("#dateOfBirthInput"),
+            yearField = $(".react-datepicker__year-select"),
+            monthField = $(".react-datepicker__month-select"),
+            subjectsInput = $("#subjectsInput"),
+            firstSubject = $("#react-select-2-option-0"),
+            hobbiesWrapper = $("#hobbiesWrapper"),
+            pictureUpload = $("#uploadPicture"),
+            addressField = $("#currentAddress"),
+            stateField = $("#state"),
+            cityField = $("#city"),
+            submitButton = $("#submit"),
+            modalWindow = $(".modal-content"),
+            closeModalButton = $("#closeLargeModal");
 
     public void checkPageIsLoaded(String pageText) {
-        $(".practice-form-wrapper").shouldHave(text(pageText));
+        formTitleField.shouldHave(text(pageText));
     }
 
     public void fillFirstName(String firstName) {
-        $("#firstName").setValue(firstName);
+        firstNameField.setValue(firstName);
     }
 
     public void fillLastName(String lastName) {
-        $("#lastName").setValue(lastName);
+        lastNameField.setValue(lastName);
     }
 
     public void fillEmail(String email) {
-        $("#userEmail").setValue(email);
+        emailField.setValue(email);
     }
 
     public void fillGender(String gender) {
-        $("#genterWrapper").$(byText(gender)).scrollIntoView(true).click();
+        genderField.$(byText(gender)).scrollIntoView(true).click();
     }
 
     public void fillMobile(String mobile) {
-        $("#userNumber").setValue(mobile);
+        mobileField.setValue(mobile);
     }
 
     public void fillDateOfBirthday(String year, String month, String day) {
-        $("#dateOfBirthInput").scrollIntoView(true).click();
+        datePickerField.scrollIntoView(true).click();
         fillDatePicker(year, month, day);
     }
 
@@ -60,31 +81,31 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public void fillPicture(String picture) {
-        $("#uploadPicture").uploadFromClasspath(picture);
+        pictureUpload.uploadFromClasspath(picture);
     }
 
     public void fillAddress(String address) {
-        $("#currentAddress").setValue(address);
+        addressField.setValue(address);
     }
 
     public void fillState(String state) {
-        $("#state").scrollIntoView(true).click();
-        $("#state").find(byText(state)).scrollIntoView(true).click();
+        stateField.scrollIntoView(true).click();
+        stateField.find(byText(state)).scrollIntoView(true).click();
     }
 
     public void fillCity(String city) {
-        $("#city").scrollIntoView(true).click();
-        $("#city").find(byText(city)).scrollIntoView(true).click();
+        cityField.scrollIntoView(true).click();
+        cityField.find(byText(city)).scrollIntoView(true).click();
     }
 
     public void clickSubmit() {
-        $("#submit").scrollIntoView(true).click();
+        submitButton.scrollIntoView(true).click();
     }
 
 
     public void closeModal() {
-        $("#closeLargeModal").scrollIntoView(true).click();
-        $(".modal-content").shouldNotBe(visible);
+        closeModalButton.scrollIntoView(true).click();
+        modalWindow.shouldNotBe(visible);
     }
 
     public void checkData(Map<String, String> expectedData) {
@@ -98,18 +119,18 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     private static void fillDatePicker(String year, String month, String day) {
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
+        monthField.selectOption(month);
+        yearField.selectOption(year);
         $(String.format(".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)", day)).scrollIntoView(true).click();
     }
 
     private static void addSubject(String subject) {
-        $("#subjectsInput").setValue(subject);
-        $("#react-select-2-option-0").scrollIntoView(true).click();
+        subjectsInput.setValue(subject);
+        firstSubject.scrollIntoView(true).click();
     }
 
     private static void addHobby(String hobby) {
-        $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
+        hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click();
     }
 
 }
